@@ -1,0 +1,1 @@
+export { LocksServiceFactory } from './LocksServiceFactory';

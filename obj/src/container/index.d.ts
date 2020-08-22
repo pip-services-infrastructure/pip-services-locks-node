@@ -1,0 +1,1 @@
+export { LocksProcess } from "./LocksProcess";

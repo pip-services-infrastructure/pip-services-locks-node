@@ -1,0 +1,36 @@
+import { FilterParams, IOpenable } from 'pip-services3-commons-node';
+import { PagingParams } from 'pip-services3-commons-node';
+import { DataPage } from 'pip-services3-commons-node';
+import { ConfigParams } from 'pip-services3-commons-node';
+import { IConfigurable } from 'pip-services3-commons-node';
+import { IReferences } from 'pip-services3-commons-node';
+import { IReferenceable } from 'pip-services3-commons-node';
+import { CommandSet } from 'pip-services3-commons-node';
+import { ICommandable } from 'pip-services3-commons-node';
+import { LockV1 } from '../data/version1/LockV1';
+import { ILocksController } from './ILocksController';
+export declare class LocksController implements ILocksController, IConfigurable, IReferenceable, ICommandable, IOpenable {
+    private _persistence;
+    private _commandSet;
+    private _opened;
+    private _config;
+    private _logger;
+    private _timer;
+    private _cleanInterval;
+    private _retryTimeout;
+    private _releaseOwnLocksOnly;
+    private _release_admin_id;
+    constructor();
+    configure(config: ConfigParams): void;
+    open(correlationId: string, callback?: (err: any) => void): void;
+    isOpen(): boolean;
+    close(correlationId: string, callback?: (err: any) => void): void;
+    setReferences(references: IReferences): void;
+    getCommandSet(): CommandSet;
+    getLocks(correlationId: string, filter: FilterParams, paging: PagingParams, callback: (err: any, page: DataPage<LockV1>) => void): void;
+    getLockById(correlationId: string, key: string, callback: (err: any, lock: LockV1) => void): void;
+    tryAcquireLock(correlationId: string, key: string, ttl: number, client_id: string, callback: (err: any, result: boolean) => void): void;
+    acquireLock(correlationId: string, key: string, ttl: number, timeout: number, client_id: string, callback: (err: any) => void): void;
+    releaseLock(correlationId: string, key: string, client_id: string, callback: (err: any) => void): void;
+    cleanLocks(correlationId: string, callback?: (err: any) => void): void;
+}

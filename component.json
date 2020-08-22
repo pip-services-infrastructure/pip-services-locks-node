@@ -1,0 +1,6 @@
+{
+  "name": "pip-services-locks-node",
+  "registry": "registry.gitlab.com/pip-services",
+  "version": "1.0.0",
+  "build": 0
+}
